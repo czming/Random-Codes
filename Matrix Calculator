@@ -1,0 +1,148 @@
+import random
+import sys
+
+def matrixaddition(matrix1, matrix2):
+    new_matrix = [[None for i in range(len(matrix1[0]))] for i in range(len(matrix1))]          #take the all the rows and columns in the matrix to be the same size and same number of rows and columns for both matrix
+    most_digit = 0
+    for i in range(len(matrix1)):
+        for j in range(len(matrix1[i])):
+            curr_sum = matrix1[i][j] + matrix2[i][j]
+            new_matrix[i][j] = curr_sum
+            curr_digit = len(str(curr_sum))
+            if curr_digit > most_digit:
+                most_digit = curr_digit
+    for i in range(len(new_matrix)):
+        for j in range(len(new_matrix[i])):
+            print (" " * (most_digit - len(str(new_matrix[i][j]))) + str(new_matrix[i][j]), end = ' ')              #print out extra spaces in front to format it
+        print ()
+
+def matrixmultiplication(matrix1, matrix2):
+    new_matrix = [[None for i in range(len(matrix2[0]))] for i in range(len(matrix1))]         #number of arrays, representing rows dependent on number of rows for matrix 1 (ie matrix 1's number of rows), while number of elements in each row, ie column numbers, dependent on matrix 2's number of columns, ie its n value   
+    most_digit = 0
+    for row in range(len(new_matrix)):
+        for column in range(len(new_matrix[row])):
+            curr_sum = 0                    #find most digits to align later on
+            for i in range(len(matrix1[row])):
+                 curr_sum += matrix1[row][i] * matrix2[i][column]
+            new_matrix[row][column] = curr_sum
+            curr_digit = len(str(curr_sum))         #finding number of digits in number being appended
+            if curr_digit > most_digit:
+                most_digit = curr_digit
+    for i in range(len(new_matrix)):
+        for j in range(len(new_matrix[i])):
+            print (" " * (most_digit - len(str(new_matrix[i][j]))) + str(new_matrix[i][j]), end = ' ')                  #print out extra spaces in front to format it
+        print ()
+def generatematrix(m, n):
+    matrix = []
+    for i in range(m):
+        curr_arr = []
+        for j in range(n):
+            random_int = random.randint(1,9)
+            curr_arr.append(random_int)
+            print (random_int, end = ' ')
+        print ()
+        matrix.append(curr_arr)
+    return matrix
+while True:                 #keep running until program is terminated
+    matrix1 = []
+    matrix2 = []
+
+    print("Matrix 1")
+    matrix1_m = input("Input m: ")
+    while not matrix1_m.isdigit() and not (int(matrix1_m) >= -1 and int(matrix1_m) <= 5 and int(matrix1_m) != 0):           #first check if integer, to prevent error if second code is run as well, hence preventing the typeerror from occurring if try to compare integer to other data types, check for valid values as well
+        print ("Invalid input, please input value again")
+        matrix1_m = input("Input m: ")
+    matrix1_n = input("Input n: ")
+    while not matrix1_n.isdigit() and not (int(matrix1_n) >= -1 and int(matrix1_n) <= 5 and int(matrix1_n) != 0):                #the last part is checking if the integer value is within -1 and 5, excluding 0, which is an invalid input
+        print ("Invalid input, please input value again")
+        matrix1_n = input("Input n: ")
+    while (int(matrix1_m) == -1) != (int(matrix1_n) == -1):               #in case user inputs -1 for just one of the fields
+        print ("You have inputted -1 into one of the fields but not the other, hence reinput both values")
+        matrix1_m = input("Input m: ")
+        while not matrix1_m.isdigit() and not (int(matrix1_m) >= -1 and int(matrix1_m) <= 5 and int(matrix1_m) != 0):           #first check if integer, to prevent error if second code is run as well, hence preventing the typeerror from occurring if try to compare integer to other data types, check for valid values as well
+            print ("Invalid input, please input value again")
+            matrix1_m = input("Input m: ")
+        matrix1_n = input("Input n: ")
+        while not matrix1_n.isdigit() and not (int(matrix1_n) >= -1 and int(matrix1_n) <= 5 and int(matrix1_n) != 0):                #the last part is checking if the integer value is within -1 and 5, excluding 0, which is an invalid input
+            print ("Invalid input, please input value again")
+            matrix1_n = input("Input n: ")
+    if int(matrix1_m) == -1 and int(matrix1_n) == -1:
+        print ("Program terminated, thank you")
+        sys.exit()
+    matrix1_m = int(matrix1_m)              #convert to integer
+    matrix1_n = int(matrix1_n)
+                
+    print ("Matrix 2")
+    matrix2_m = input("Input m: ")
+    while not matrix2_m.isdigit() and not (int(matrix2_m) >= -1 and int(matrix2_m) <= 5 and int(matrix2_m) != 0):           #first check if integer, to prevent error if second code is run as well, hence preventing the typeerror from occurring if try to compare integer to other data types
+        print ("Invalid input, please input value again")
+        matrix2_m = input("Input m: ")
+    matrix2_n = input("Input n: ")
+    while not matrix2_n.isdigit() and not (int(matrix2_n) >= -1 and int(matrix2_n) <= 5 or int(matrix2_n) != 0):
+        print ("Invalid input, please input value again")
+        matrix2_n = input("Input n: ")
+    while (int(matrix2_m) == -1) != (int(matrix2_n) == -1):               #in case user inputs -1 for just one of the fields
+        print ("You have inputted -1 into one of the fields but not the other, hence reinput both values")
+        matrix2_m = input("Input m: ")
+        while not matrix2_m.isdigit() and not (int(matrix2_m) >= -1 and int(matrix2_m) <= 5 and int(matrix2_m) != 0):           #first check if integer, to prevent error if second code is run as well, hence preventing the typeerror from occurring if try to compare integer to other data types, check for valid values as well
+            print ("Invalid input, please input value again")
+            matrix1_m = input("Input m: ")
+        matrix1_n = input("Input n: ")
+        while not matrix2_n.isdigit() and not (int(matrix2_n) >= -1 and int(matrix2_n) <= 5 and int(matrix2_n) != 0):                #the last part is checking if the integer value is within -1 and 5, excluding 0, which is an invalid input
+            print ("Invalid input, please input value again")
+            matrix1_n = input("Input n: ")
+    if int(matrix2_m) == -1 and int(matrix2_n) == -1:
+        print("Program terminated, thank you")
+        sys.exit()
+    matrix2_m = int(matrix2_m)
+    matrix2_n = int(matrix2_m)
+    print()
+
+    print ("Matrix 1")
+    matrix1 = generatematrix(matrix1_m, matrix1_n)
+    #for i in range(matrix1_m):         #for user inputted matrix
+    #    curr_row = input().split()
+    #    curr_row = [int(item) for item in curr_row]
+    #    while len(curr_row) != matrix1_n:
+    #        print ("Error, wrong number of elements in row")
+    #        for row in matrix1:
+    #            for j in row:
+    #               print (j, end = ' ')
+    #            print ()
+    #        print ("Please reinsert matrix 1 from the start")
+    #        curr_row = input().split()
+    #        curr_row = [int(item) for item in curr_row]
+    #    matrix1.append(curr_row)
+
+    print ("Matrix 2")
+    matrix2 = generatematrix(matrix2_m, matrix2_n)
+    #for i in range(matrix2_m):
+    #    curr_row = input().split()
+    #    curr_row = [int(item) for item in curr_row]
+    #    while len(curr_row) != matrix2_n:
+    #        print ("Error, wrong number of elements in row")
+    #        for row in matrix2:
+    #            for j in row:
+    #                print (j, end = ' ')
+    #            print ()
+    #        print ("Please reinsert matrix 1 from the start")
+    #        curr_row = input().split()
+    #        curr_row = [int(item) for item in curr_row]
+    #    matrix2.append(curr_row)
+
+    print ()
+
+    print ("Sum")
+    if matrix1_m == matrix2_m and matrix1_n == matrix2_n:
+        matrixaddition(matrix1, matrix2)
+    else:
+        print ("N/A")
+
+    print ()
+
+    print ("Product")
+    if matrix1_n == matrix2_m:
+        matrixmultiplication(matrix1, matrix2)
+    else:
+        print ("N/A")
+    print ("\n")
