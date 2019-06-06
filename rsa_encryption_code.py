@@ -53,6 +53,7 @@ def Encrypt(message, n, e):
     return FastModularExponentiation(message, e, n)
 
 def Decrypt(ciphertext, p, q, e):
+    #decrypts with private key (p,q) and public key (e)
     n = p * q
     p_q = (p-1) * (q-1)
     d = gcd(e, p_q)[1] % p_q #want the factor of e in the equation and a positive value mod p_q 
