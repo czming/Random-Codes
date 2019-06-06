@@ -47,6 +47,7 @@ def gcd(a, b):
         return d, x, y
 
 def Encrypt(message, n, e):
+    #encrypts message with public key (n,e)
     if type(message) != int:
         message = string_to_dec(message)
     return FastModularExponentiation(message, e, n)
