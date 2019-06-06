@@ -21,6 +21,7 @@ def dec_to_string(dec_value):
     return string
 
 def FastModularExponentiation(b, e, m):
+    #to quickly get mod of a exponent in log(e) time
     mod_remainder = b % m
     current_remainder = 0
     while e > 0:
