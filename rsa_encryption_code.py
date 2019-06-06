@@ -1,3 +1,4 @@
+#code for RSA encryption and decryption after completing course on Number Theory and Crytography on Coursera
 def string_to_dec(string): #convert string to ascii value in decimal form
     dec_string = ''
     string = str(string) #enforce this condition
