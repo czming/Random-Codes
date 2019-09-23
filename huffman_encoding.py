@@ -75,13 +75,13 @@ for i in infile:
 #do until only one node left, the root
 while min_heap.size() > 1:
     #get two smallest nodes
-    small = min_heap.pop().get_data()
+    small = min_heap.pop().get_data()[0]
     small.add_prefix("0")
-    two_small = min_heap.pop().get_data()
+    two_small = min_heap.pop().get_data()[0]
     two_small.add_prefix("1")
     #merge them together
     merged = HCMiddleNode(small, two_small)
 
     min_heap.insert(merged.get_frequency(), merged)
 
-tree = min_heap.pop().get_data()
+tree = min_heap.pop().get_data()[0]
