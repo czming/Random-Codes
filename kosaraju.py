@@ -77,6 +77,7 @@ class Graph:
         stack = [start_vertex]
         self.explored[start_vertex] = True
         size = 0
+        #iterative implementation (Python seems to restart shell if too many recursive calls even after setting a higher recursion limit)
         while len(stack) >= 1:
             #just see the last element, don't pop yet
             curr = stack[-1]
